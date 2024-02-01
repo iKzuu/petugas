@@ -9,25 +9,22 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login NowLib'),
-        centerTitle: true,
-        backgroundColor: Colors.black26,
-      ),
       body: Container(
+        padding: EdgeInsets.only(bottom: 120.0),
         color: Colors.lightBlue,
-
         child: Center(
             child: Form(
               key: controller.formKey,
               child: Container(
-                width: 500.0,
+                width: 450.0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Image.asset("assets/logo.png"),
+                      child: Image.asset(
+                          "assets/logo.png",
+                      ),
                     ),
                     SizedBox(height: 16.0),
                     Padding(
@@ -77,9 +74,24 @@ class LoginView extends GetView<LoginController> {
 
                           Obx(() => controller.loading.value?
                           CircularProgressIndicator():
-                          ElevatedButton(onPressed: () {
-                            controller.login();
-                          }, child: Text("Login"))
+                          Container(
+                            margin: EdgeInsets.only(left: 335.0),
+                            padding: EdgeInsets.only(top: 30.0),
+                            child: ElevatedButton(onPressed: () {
+                              controller.login();
+                            },
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+                                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),// Ganti warna sesuai keinginan,
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  minimumSize: MaterialStateProperty.all(Size(100.0, 50.0)),
+                                ),
+                                child: Text("Login")),
+                          ),
                           )
                         ],
                       ),
